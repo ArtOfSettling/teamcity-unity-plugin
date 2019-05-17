@@ -10,6 +10,7 @@ package jetbrains.buildServer.unity
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.util.SystemInfo
 import com.vdurmont.semver4j.Semver
+import jetbrains.buildServer.agent.BuildFinishedStatus
 import jetbrains.buildServer.agent.runner.BuildServiceAdapter
 import jetbrains.buildServer.agent.runner.ProgramCommandLine
 import jetbrains.buildServer.messages.Status
@@ -60,6 +61,13 @@ class UnityRunnerBuildService(private val unityToolProvider: UnityToolProvider) 
             Verbosity.Minimal -> "-cleanedLogFile"
             else -> ARG_LOG_FILE
         }
+
+    override fun getRunResult(exitCode: Int): BuildFinishedStatus {
+        if(runnerParameters[UnityConstants.PARAM_IGNORE_EXIT_CODE]?.toBoolean() == true)
+            return BuildFinishedStatus.FINISHED_SUCCESS
+
+        return super.getRunResult(exitCode)
+    }
 
     override fun makeProgramCommandLine(): ProgramCommandLine {
         val (version, toolPath) = unityToolProvider.getUnity(UnityConstants.RUNNER_TYPE, build, runnerContext)

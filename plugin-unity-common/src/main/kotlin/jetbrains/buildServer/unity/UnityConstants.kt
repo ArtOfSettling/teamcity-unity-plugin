@@ -35,6 +35,7 @@ object UnityConstants {
     const val PARAM_SILENT_CRASHES = "silentCrashes"
     const val PARAM_LINE_STATUSES_FILE = "lineStatusesFile"
     const val PARAM_VERBOSITY = "verbosity"
+    const val PARAM_IGNORE_EXIT_CODE = "ignoreExitCode"
 
     const val PARAM_ACTIVATE_LICENSE = "activateLicense"
     const val PARAM_SERIAL_NUMBER = Constants.SECURE_PROPERTY_PREFIX + "serialNumber"

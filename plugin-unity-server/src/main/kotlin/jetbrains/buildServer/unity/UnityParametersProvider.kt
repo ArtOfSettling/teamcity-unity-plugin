@@ -32,6 +32,9 @@ class UnityParametersProvider {
     val noGraphics: String
         get() = UnityConstants.PARAM_NO_GRAPHICS
 
+    val ignoreExitCode: String
+        get() = UnityConstants.PARAM_IGNORE_EXIT_CODE
+
     val arguments: String
         get() = UnityConstants.PARAM_ARGUMENTS
 
